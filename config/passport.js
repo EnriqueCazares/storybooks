@@ -16,12 +16,15 @@ module.exports = function(passport){
             //console.log(accessToken);
             //console.log(profile);
 
+
+            const image = profile.photos[0].value.substring(0, profile.photos[0].value.indexOf('?'));
+
             const newUser = {
                 googleID: profile.id,
                 firstName: profile.name.givenName,
                 lastName: profile.name.familyName,
                 email: profile.emails[0].value,
-                image: String(profile.photos[0])
+                image: image
             };
 
             // Check for existing user
