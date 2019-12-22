@@ -7,7 +7,14 @@ const User = mongoose.model('users');
 
 // Stories Index
 router.get('/', (req, res) => {
-    res.render('stories/index');
+    Story.find({status: 'public'})
+        .populate('user')
+        .then(stories => {
+            res.render('stories/index', {
+                stories: stories
+            });
+        });
+    
 });
 
 // Add Story Form
